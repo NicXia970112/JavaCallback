@@ -5,7 +5,7 @@ public class Demo {
     public static void main(String args[]) {
         Value v = new Value();
         v.setSum(0);
-        v.getSUM(v);
+        v.getSUM();
         for(int i = 0; i < 100; i++) {
             System.out.println("执行后续任务"  + " " + i + "%");
         }
@@ -23,7 +23,7 @@ public class Demo {
 interface Callback {
     public void setSUM(int sum);
 
-    public void getSUM(Callback callback);
+    public void getSUM();
 }
 
 class Value implements Callback{
@@ -45,8 +45,9 @@ class Value implements Callback{
     }
 
     @Override
-    public void getSUM(Callback callback) {
+    public void getSUM() {
         Method m = new Method();
+        Callback callback = this;
         new Thread(new Runnable() {
             @Override
             public void run() {
