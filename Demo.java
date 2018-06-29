@@ -48,12 +48,15 @@ class Value implements Callback{
     public void getSUM() {
         Method m = new Method();
         Callback callback = this;
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 m.sum(callback);
             }
-        }).start();
+        }).start(); //异步回调
+
+        //m.sum(callback);　//同步回调
     }
 }
 
